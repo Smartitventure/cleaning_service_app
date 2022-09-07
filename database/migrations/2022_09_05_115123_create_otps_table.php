@@ -19,7 +19,9 @@ class CreateOtpsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('code');
             $table->string('expire_at');
-            $table->timestamps();
+            // $table->timestamps();
+            $table->dateTime('createdAt')->nullable();
+            $table->dateTime('updatedAt')->nullable();
         });
     }
 

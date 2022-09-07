@@ -30,6 +30,8 @@ Route::group(['middleware' => ['admin']], function () {
    Route::delete('customer/delete/{id}', 'AdminController@delete_customer')->name('customer/delete');
    Route::get('view-customer/{id}', 'AdminController@view_customer')->name('view-customer');
    Route::get('all-service-providers', 'AdminController@all_service_providers')->name('all-service-providers');
+   Route::delete('service_provider/delete/{id}', 'AdminController@delete_service_provider')->name('service_provider/delete');
+   Route::get('view-service-provider/{id}', 'AdminController@view_service_provider')->name('view-service-provider');
    
 
 

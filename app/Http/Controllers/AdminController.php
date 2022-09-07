@@ -64,4 +64,20 @@ class AdminController extends Controller
         $all_service_providers = \App\User::where('role','service_provider')->get();
         return view('all_service_providers',compact('all_service_providers'));
     }
+    public function delete_service_provider($id){
+        $service_provider = \App\User::find($id);
+        if(!is_null($service_provider)){
+            $service_provider->delete(); 
+            return redirect()->back()->with(['alert'=>'success','message'=>'Service Provider Deleted successfully']);
+        }
+        else
+        {
+            return redirect()->back()->with(['alert'=>'danger','message'=>'Oops! Something went wrong']);  
+        }
+    }
+
+    public function view_service_provider($id){
+        $service_provider = \App\User::find($id);
+        return view('view_service_provider',compact('service_provider'));
+    }
 }

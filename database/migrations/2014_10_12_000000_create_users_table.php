@@ -27,11 +27,13 @@ class CreateUsersTable extends Migration
             $table->integer('status');
             $table->date('dob');
             $table->date('join_date');
-            $table->dateTime('last_seen');
+            $table->dateTime('last_seen')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
+            $table->dateTime('createdAt')->nullable();
+            $table->dateTime('updatedAt')->nullable();
             $table->rememberToken();
-            $table->timestamps();
+            // $table->timestamps();
         });
     }
 

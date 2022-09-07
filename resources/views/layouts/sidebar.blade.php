@@ -2,11 +2,11 @@
 		<div class="toggle">
 			<i class="fa fa-bars" aria-hidden="true"></i>
 		</div>
-		<div class="mainlogoimage"> <img src="images/mainlogo3.png" /> </div>
+		<div class="mainlogoimage"> <img src="{{asset('images/mainlogo3.png')}}" /> </div>
 		<nav>
 			<ul >
 				<li>
-					<a href="#"> <span class="icon"><i class="fa fa-server" aria-hidden="true"></i></span> <span class="title">Dashboard</span> </a>
+					<a href="{{route('home')}}"> <span class="icon"><i class="fa fa-server" aria-hidden="true"></i></span> <span class="title">Dashboard</span> </a>
 				</li>
 				<li class="sidebar-dropdown ">
 					<a href="#"> <i class="fa fa-home home-custom " aria-hidden="true"></i><span>Stylist</span> </a>

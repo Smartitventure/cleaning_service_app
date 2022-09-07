@@ -54,7 +54,7 @@ const User = sequelize.define("user", {
   },
   last_seen: {
     type: Sequelize.DATE,
-    allowNull: false,
+    allowNull: true,
   },
   password: {
     type: Sequelize.STRING,

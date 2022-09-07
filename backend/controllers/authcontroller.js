@@ -5,19 +5,20 @@ var jwt = require("jsonwebtoken");
 
 // register user
 exports.create = async (req,res,next)=>{
-
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(req.body.password, salt);
-
     const userData = {
         name: req.body.name,
-        email: req.body.email,
+        mobile_number: req.body.mobile_number,
+        gender: req.body.gender,
+        dob: req.body.dob,
         role: req.body.role,
-        password: hashedPassword,
+        gps_position: req.body.gps_position,
+        status: 0,
+        join_date: req.body.join_date,
+        language: req.body.language,
+        country: req.body.country,
     };
     await Userdb.create(userData)
     .then(data => {
-        //console.log(data.id)
         var token = jwt.sign({ id: data.id }, "bezkoder-secret-key", {
         expiresIn: 86400 // 24 hours
         });

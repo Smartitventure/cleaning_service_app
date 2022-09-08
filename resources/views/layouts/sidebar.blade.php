@@ -8,21 +8,21 @@
 				<li>
 					<a href="{{route('home')}} " class="{{ (request()->is('home')) ? 'active' : '' }}"> <span class="icon "><i class="fa fa-server" aria-hidden="true"></i></span> <span class="title ">Dashboard</span> </a>
 				</li>
-				<li class="sidebar-dropdown ">
-					<a href="#"> <i class="fa fa-home home-custom " aria-hidden="true"></i><span>Stylist</span> </a>
-				</li>
 				<li class="sidebar-dropdown active ">
 					<a href="#"> <i class="fa fa-home home-custom " aria-hidden="true"></i><span>Service's</span> <i class="fa fa-angle-right right-custom" aria-hidden="true"></i> </a>
 					<ul class="sidebar-submenu" style="display:none;">
-						<li> <a href="#">Dashboard 1
+						<li> <a href="{{route('add-services')}}">Add
                         
                       </a> </li>
-						<li> <a href="#">Dashboard 2</a> </li>
-						<li> <a href="#">Dashboard 3</a> </li>
+						<li> <a href="#">View</a> </li>
+						
 					</ul>
 				</li>
 				<li class="sidebar-dropdown  ">
-					<a href="#"> <i class="fa fa-home home-custom " aria-hidden="true"></i><span>Customers</span> </a>
+					<a href="{{route('all-customers')}} {{ (request()->is('home')) ? 'active' : '' }}"> <i class="fa fa-home home-custom " aria-hidden="true"></i><span>Customers</span> </a>
+				</li>
+				<li class="sidebar-dropdown  ">
+					<a href="{{route('all-service-providers')}} {{ (request()->is('home')) ? 'active' : '' }}"> <i class="fa fa-home home-custom " aria-hidden="true"></i><span>Service Providers</span> </a>
 				</li>
 				<li class="sidebar-dropdown  ">
 					<a href="#"> <i class="fa fa-home home-custom " aria-hidden="true"></i><span>Earnings</span> </a>

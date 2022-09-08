@@ -19,6 +19,7 @@ class AdminSeeder extends Seeder
         $user->lat = "12.34.233";
         $user->long = "12.34.233";
         $user->gender = "male";
+        
         $user->company = "SmartIT";
         $user->mobile_number = 2569857412;
         $user->language = 2;

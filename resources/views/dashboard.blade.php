@@ -35,11 +35,14 @@
 								<h6>Total Service Providers</h6>
 							</div>
 							<div class="flowchart">
+
 								<!-- php -->
 								@php 
 									$total_service_providers = \App\User::where('role','service_provider')->count();
-								@endphp
+								@endphp  
 								<!-- endphp -->
+
+
 								<div id="cont" data-pct="{{$total_service_providers}}">
 									<svg id="svg" width="200" height="200" viewPort="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
 										<circle r="90" cx="100" cy="100" fill="transparent" stroke-dasharray="565.48" stroke-dashoffset="0"></circle>
@@ -66,22 +69,22 @@
 							<div class="pendingboxinner">
 								<!-- php	 -->
 								@php
-									$all_customers = \App\User::where('role','customer')->limit(5)->latest()->get();
+									$all_customers = \App\User::where('role','customer')->limit(5)->orderBy('id', 'DESC')->get();
 								@endphp
 								<!-- endphp -->
 								@if(count($all_customers) > 0)
 									@foreach($all_customers as $customers)
 									<div class="imgbox2">
-										<a href="#"> <img src="images/profileimg1.png" /> </a>
+										<a href="#"> <img src="{{asset($customers->image)}}" /> </a>
 										<div class="textbox2">
 											<h6>{{$customers->name}}</h6>
 											<p>{{$customers->email}}</p>
 										</div>
-										<div class="buttonbox2"> <a href="">{{date("d F Y", strtotime($customers->created_at))}}</a> </div>
+										<div class="buttonbox2"> <a href="{{route('view-customer',$customers->id)}}">{{date("d M Y", strtotime($customers->createdAt))}}</a> </div>
 									</div>
 								
-								<div class="viewbuttonbox"> <a href="{{route('all-customers')}}">View More</a> </div>
 									@endforeach
+								<div class="viewbuttonbox"> <a href="{{route('all-customers')}}">View More</a> </div>
 								@else
 									<h4>No data found</h4>
 								@endif
@@ -125,19 +128,19 @@
 										
 											<!-- php	 -->
 											@php
-												$all_service_providers = \App\User::where('role','service_provider')->limit(5)->latest()->get();
+												$all_service_providers = \App\User::where('role','service_provider')->limit(5)->orderBy('id', 'DESC')->get();
 											@endphp
 											<!-- endphp -->
 
 											@if(count($all_service_providers) > 0)
 												@foreach($all_service_providers as $service_providers)
 												<div class="imgbox2">
-													<a href="#"> <img src="images/profileimg1.png" /> </a>
+													<a href="#"> <img src="{{asset($service_providers->image)}}" /> </a>
 													<div class="textbox2">
 														<h6>{{$service_providers->name}}</h6>
 														<p>{{$service_providers->email}}</p>
 													</div>
-													<div class="buttonbox2"> <a href="">{{date("d F Y", strtotime($service_providers->created_at))}}</a> </div>
+													<div class="buttonbox2"> <a href="{{route('view-service-provider',$service_providers->id)}}">{{date("d M Y", strtotime($service_providers->createdAt))}}</a> </div>
 												</div>
 												@endforeach
 											
@@ -163,9 +166,11 @@
 											 
 								  </div>
 
+								<!-- php -->
 								  @php 
-									$contact_us = \App\ContactUs::limit(5)->latest()->get();
+									$contact_us = \App\ContactUs::limit(5)->orderBy('id', 'DESC')->get();
 								  @endphp
+								<!-- endphp -->
 								  <div class="pendingboxinner">
 								<div class="Pendingbox customerheadingbox">
 									<h3>Recent Contacts</h3>
@@ -173,14 +178,14 @@
 								@if(count($contact_us) > 0)
 								@foreach( $contact_us as $data)
 								<div class="imgbox2">
-									<a href=""> <img src="{{asset('images/profile-image.jpg')}}" /> </a>
+									<a href=""> <img src="{{asset('images/Dummy.jpg')}}" /> </a>
 									<div class="textbox2">
 										
 										<h6>{{$data->name}}</h6>
 										
 										<p>{{$data->email}}</p>
 									</div>
-									<div class="buttonbox2"> <a href="">{{date("d F Y", strtotime($data->created_at))}}</a> </div>
+									<div class="buttonbox2"> <a href="">{{date("d M Y", strtotime($data->createdAt))}}</a> </div>
 								</div>
 								@endforeach
 								<div class="viewbuttonbox"> <a href="{{route('contact_us')}}">View More</a></div>

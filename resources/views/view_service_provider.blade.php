@@ -52,7 +52,7 @@
                                         <div class="custom-imagebox">
                                             @if(!is_null($service_provider->image))
 
-                                            <img src="{{asset($view_artist->profile->profile)}}" />
+                                            <img src="{{asset($service_provider->image)}}" />
                                             @else
                                                 <img src="{{asset('images/dummy.jpg')}}">
                                             @endif
@@ -72,7 +72,7 @@
                                     </div>
                                     <div class="mail-box">
                                         <div class="iocn-box">
-                                            <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                                            <i class="fa fa-user" aria-hidden="true"></i>
                                         </div>
                                         <p>{{$service_provider->gender}}</p>
                                     </div>

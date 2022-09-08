@@ -1,110 +1,124 @@
 const Userdb = require('../models/User');
 const FavouriteLocation = require('../models/FavouriteLocation');
-
-const bcrypt = require('bcrypt');
-var jwt = require("jsonwebtoken");
+const { s3Uploadv2 } = require("./../s3Service");
 
 // profile
 exports.profile = async (req,res,next)=>{
-    
-    jwt.verify(req.token, 'bezkoder-secret-key', (err, authData) => {
-        if(err) {
-          res.sendStatus(403);
-        } else {
-
-        const userdb = Userdb.findOne({ where: { id: authData.id } })
-        .then(function(userdb){
-            res.send({status:true, message: "User Details" ,user:userdb});
-        })
-        .catch(err=>{
-            res.send(err);
-        })
-
-        }
-      });
+   await Userdb.findByPk(req.payload.id,{
+    include: [ {
+      model: FavouriteLocation,
+      attributes: ['id', 'lat', 'long']
+    }
+    ]
+    })
+    .then(function(userdb){
+        res.send({status:true, message: "User Details" ,user:userdb});
+    })
+    .catch(err=>{
+        res.send(err);
+    })
 }
 
 exports.add_fav_location = async (req,res,next)=>{
-    
-  jwt.verify(req.token, 'bezkoder-secret-key', (err, authData) => {
-      if(err) {
-        res.sendStatus(403);
-      } else {
+  
+    Userdb.findOne({ where: { id: req.payload.id } })
+    .then(function(user){
 
-        const user = Userdb.findOne({ where: { id: authData.id } })
-        .then(function(user){
-            const fav_location = {
+      FavouriteLocation.findOne({ where: {
+        user_id: user.id,
+        lat: req.body.lat,
+        long: req.body.long
+      }}).then(function(fav_loc){
+
+          if(!fav_loc){
+
+          const fav_location = {
               user_id: user.id,
-              location: req.body.location,
-            };
-            FavouriteLocation.create(fav_location)
-            res.send({status:true, message: "Location is Added"});
-        })
-        .catch(err=>{
-            res.send(err);
-        })
+              lat: req.body.lat,
+              long: req.body.long,
+          };
+          FavouriteLocation.create(fav_location)
+          res.send({status:true, message: "Location is Added"});
 
-      }
-    });
-}
+          }else{
 
-
-exports.remove_fav_location = async (req,res,next)=>{
-    
-  jwt.verify(req.token, 'bezkoder-secret-key', (err, authData) => {
-      if(err) {
-        res.sendStatus(403);
-      } else {
-
-        const user = Userdb.findOne({ where: { id: authData.id } })
-        .then(function(user){
-         
           FavouriteLocation.destroy({
-              where: {
-                id: req.body.id
-              }
-           })
-          .then(data => {
-              if(!data){
-                  res.send({status:false, message: "Something Went Wrong"});
-              }else{
-                  res.send({status:true, message: "Location is Removed"});
-              }
+            where: {
+              id: fav_loc.id
+            }
           })
-          .catch(err =>{
-              res.status(500).send({
-                  message: "Something Went Wrong"
-              });
-          });
+          res.send({status:true, message: "Location is Removed"});
 
-
-        })
-        .catch(err=>{
-            res.send(err);
-        })
+          }
+          
+      })
         
-      }
-    });
-}
+    })
+    .catch(err=>{
+        res.send(err);
+    })
 
+}
 
 exports.update_information = async (req,res,next)=>{
-    
-  jwt.verify(req.token, 'bezkoder-secret-key', (err, authData) => {
-      if(err) {
-        res.sendStatus(403);
-      } else {
 
-      const userdb = Userdb.findOne({ where: { id: authData.id } })
-      .then(function(userdb){
-          res.send({status:true, message: "User Details" ,user:userdb});
-      })
-      .catch(err=>{
-          res.send(err);
-      })
+    let doesExist = await Userdb.findOne({ where: { id: req.payload.id } })
+    if (doesExist) {
+
+      if(!req.file){
+        var user_data = {
+          name: req.body.name,
+          mobile_number: req.body.mobile_number,
+          gender: req.body.gender,
+          dob: req.body.dob,
+        };
+
+      }else{
+
+        let result = await s3Uploadv2(req.file);
+        var url =  result.Location;
+
+        var user_data = {
+          name: req.body.name,
+          mobile_number: req.body.mobile_number,
+          gender: req.body.gender,
+          dob: req.body.dob,
+          image:url
+        };
 
       }
-    });
+
+      Userdb.update(user_data,{ where: { id: doesExist.id } })
+      .then(data => {
+          if(!data){
+              res.status(404).send({status: false, message : `Cannot Update user Somthing went wrong`})
+          }else{
+              res.status(200).send({status: true, message : `User Updated Succesfully`})
+          }
+      })
+      .catch(err =>{
+          res.status(500).send({ message : "Cannot Update user Somthing went wrong"})
+      })
+
+    }
+
+}
+
+
+exports.services = async (req,res,next)=>{
+  await Userdb.findByPk(req.payload.id,{
+   include: [ {
+     model: FavouriteLocation,
+     attributes: ['id', 'lat', 'long']
+   }
+   ]
+   })
+   .then(function(userdb){
+       res.send({status:true, message: "User Details" ,user:userdb});
+   })
+   .catch(err=>{
+       res.send(err);
+   })
 }
 
 

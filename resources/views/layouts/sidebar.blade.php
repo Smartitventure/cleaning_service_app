@@ -6,7 +6,7 @@
 		<nav>
 			<ul >
 				<li>
-					<a href="{{route('home')}}"> <span class="icon"><i class="fa fa-server" aria-hidden="true"></i></span> <span class="title">Dashboard</span> </a>
+					<a href="{{route('home')}} " class="{{ (request()->is('home')) ? 'active' : '' }}"> <span class="icon "><i class="fa fa-server" aria-hidden="true"></i></span> <span class="title ">Dashboard</span> </a>
 				</li>
 				<li class="sidebar-dropdown ">
 					<a href="#"> <i class="fa fa-home home-custom " aria-hidden="true"></i><span>Stylist</span> </a>

@@ -17,7 +17,9 @@ class CreateFavouriteLocationsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('location');
+            $table->string('lat');
+            $table->string('long');
+            // $table->timestamps();
             $table->dateTime('createdAt')->nullable();
             $table->dateTime('updatedAt')->nullable();
         });

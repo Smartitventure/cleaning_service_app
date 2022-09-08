@@ -12,18 +12,81 @@ exports.create = async (req,res,next)=>{
         gender: req.body.gender,
         dob: req.body.dob,
         role: req.body.role,
-        gps_position: req.body.gps_position,
         status: 0,
         join_date: req.body.join_date,
         language: req.body.language,
         country: req.body.country,
     };
     await Userdb.create(userData)
-    .then(data => {
-        var token = jwt.sign({ id: data.id }, "bezkoder-secret-key", {
-        expiresIn: 86400 // 24 hours
+    .then(user => {
+
+        if(req.body.device_id !== null){       
+            UserDeviceId.findOne({
+                where: {
+                    device_id: req.body.device_id,
+                    user_id: user.id
+                }
+            }).then(device_token => {
+    
+                if (device_token) {
+                    UserDeviceId.update(
+                    {
+                        firebase_token: req.body.firebase_token,    
+                    },
+                    { where: { user_id: user.id } }
+                    )
+                }else{
+                    const device_id = {
+                        user_id: user.id,
+                        device_id: req.body.device_id,
+                        firebase_token: req.body.firebase_token,
+                        device_type: req.body.device_type,
+                        dob: req.body.dob,
+                    };
+                    UserDeviceId.create(device_id)
+                }
+            })
+        }
+
+
+        Otp.findOne({
+            where: {
+                user_id: user.id
+            }
+        }).then(otp => {
+    
+            const minutesToAdd = 2
+            const currentDate = new Date()
+            const futureDate = new Date(currentDate.getTime() + minutesToAdd * 60000)
+    
+            if(otp){
+                Otp.update(
+                    {
+                        code: "1111", 
+                        expire_at: futureDate   
+                    },
+                    { where: { user_id: user.id } }
+                )
+            }else{
+               // console.log("yesss")
+                const optData = {
+                    user_id: user.id,
+                    code: "1111", 
+                    expire_at: futureDate
+                };
+                const otpResponse = Otp.create(optData)
+            }
+    
+    
+            res.status(200).send({
+                status: true,
+                id: user.id,
+                is_checked: 0,
+                otp: "Otp send to you regsitered mobile number"
+            });
+    
         });
-       res.send({status:true, message: "User registered successfully!" ,id: data.id,accessToken: token});
+    
     })
     .catch(err => {
         res.send({ status:false, message: err.message});

@@ -16,7 +16,8 @@ class AdminSeeder extends Seeder
         $user->email = 'cleaningapp@gmail.com';
         $user->password = \Hash::make('cleaningapp@123');
         $user->role = "admin";
-        $user->gps_position = "12.34.233";
+        $user->lat = "12.34.233";
+        $user->long = "12.34.233";
         $user->gender = "male";
         $user->company = "SmartIT";
         $user->mobile_number = 2569857412;

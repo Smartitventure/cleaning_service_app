@@ -30,7 +30,7 @@
                         <th>Customer Name</th>
                         <th>Email</th>
                         <th>Status</th>
-                        <th>Action</th>
+                        <th colspan="2">Action</th>
                        
                     </tr>
                 </thead>
@@ -47,8 +47,8 @@
                         
                         @endif
                         <td>
-                            <a href="#deleteEmployeeModal" class="btn btn-danger" onclick="deleteData('{{route('service_provider/delete',$service_providers->id)}}');" data-toggle="modal">Delete</a>
-                            <a href="{{route('view-service-provider',$service_providers->id)}}" class="btn btn-danger"  >View</a>
+                            <a href="#deleteEmployeeModal"  onclick="deleteData('{{route('service_provider/delete',$service_providers->id)}}');" data-toggle="modal"><i class="fa fa-trash" ></a>
+                            <a href="{{route('view-service-provider',$service_providers->id)}}"   ><i class="fa fa-eye" aria-hidden="true" data-toggle="tooltip" title="Delete"></a>
                         </td>
                     </tr>  
                     @endforeach

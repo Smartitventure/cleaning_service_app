@@ -1,5 +1,7 @@
 const Sequelize = require("sequelize");
 const sequelize = require("../db/database");
+const FavouriteLocation = require('../models/FavouriteLocation');
+
 
 const User = sequelize.define("user", {
   id: {
@@ -12,15 +14,23 @@ const User = sequelize.define("user", {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  gps_position: {
+  lat: {
     type: Sequelize.STRING,
-    allowNull: false,
+    allowNull: true,
+  },
+  long: {
+    type: Sequelize.STRING,
+    allowNull: true,
   },
   gender: {
     type: Sequelize.STRING,
     allowNull: false,
   },
   company: {
+    type: Sequelize.STRING,
+    allowNull: true,
+  },
+  image: {
     type: Sequelize.STRING,
     allowNull: true,
   },
@@ -66,5 +76,8 @@ const User = sequelize.define("user", {
   }
 
 });
+
+User.hasMany(FavouriteLocation, { foreignKey: 'user_id'});
+FavouriteLocation.belongsTo(User,{ foreignKey: 'user_id'});
 
 module.exports = User;

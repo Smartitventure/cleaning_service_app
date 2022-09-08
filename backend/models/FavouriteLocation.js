@@ -12,10 +12,14 @@ const FavouriteLocation = sequelize.define("favourite_location", {
     type: Sequelize.INTEGER,
     allowNull: false,
   },
-  location: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
-  }
+  lat: {
+    type: Sequelize.STRING,
+    allowNull: true,
+  },
+  long: {
+    type: Sequelize.STRING,
+    allowNull: true,
+  },
 });
 
 module.exports = FavouriteLocation;

@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "aws-sdk": "^2.1211.0",
     "axios": "^0.27.2",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.20.0",
@@ -26,6 +27,7 @@
     "nodemailer": "^6.7.8",
     "nodemon": "^2.0.19",
     "passport": "^0.6.0",
-    "sequelize": "^6.21.4"
+    "sequelize": "^6.21.4",
+    "uuid": "^9.0.0"
   }
 }

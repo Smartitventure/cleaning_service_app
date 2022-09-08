@@ -21,7 +21,9 @@ class CreateNotificationsTable extends Migration
             $table->foreign('service_provider_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('type');
             $table->string('title');
-            $table->timestamps();
+            // $table->timestamps();
+            $table->dateTime('createdAt')->nullable();
+            $table->dateTime('updatedAt')->nullable();
         });
     }
 

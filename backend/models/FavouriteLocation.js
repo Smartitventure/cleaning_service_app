@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 const sequelize = require("../db/database");
 
-const Otp = sequelize.define("otp", {
+const FavouriteLocation = sequelize.define("favourite_location", {
   id: {
     type: Sequelize.INTEGER,
     autoIncrement: true,
@@ -12,14 +12,10 @@ const Otp = sequelize.define("otp", {
     type: Sequelize.INTEGER,
     allowNull: false,
   },
-  code: {
+  location: {
     type: Sequelize.INTEGER,
     allowNull: false,
-  },
-  expire_at: {
-    type: Sequelize.DATE,
-    allowNull: true,
   }
 });
 
-module.exports = Otp;
+module.exports = FavouriteLocation;

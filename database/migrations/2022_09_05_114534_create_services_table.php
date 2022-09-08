@@ -18,7 +18,9 @@ class CreateServicesTable extends Migration
             $table->string('service_name');
             $table->string('service_description');
             $table->integer('status');
-            $table->timestamps();
+            // $table->timestamps();
+            $table->dateTime('createdAt')->nullable();
+            $table->dateTime('updatedAt')->nullable();
         });
     }
 

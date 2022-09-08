@@ -1,5 +1,6 @@
 const Userdb = require('../models/User');
 const Otp = require('../models/Otp');
+const UserDeviceId = require('../models/UserDeviceId');
 const bcrypt = require('bcrypt');
 var jwt = require("jsonwebtoken");
 
@@ -25,118 +26,145 @@ exports.create = async (req,res,next)=>{
        res.send({status:true, message: "User registered successfully!" ,id: data.id,accessToken: token});
     })
     .catch(err => {
-        res.send({ message: err});
+        res.send({ status:false, message: err.message});
     });
 }
 
 
 // login user
 
-exports.login = (req, res) => {
+exports.login =  (req, res) => {
+
     Userdb.findOne({
       where: {
-        bunmber: req.body.email
+        mobile_number: req.body.mobile_number
       }
     })
     .then(user => {
     if (!user) {
-        return res.status(404).send({ message: "User Not found." });
+        res.status(500).send({ status: false, message: "Number is not registered" })
     }
-  
-    var passwordIsValid = bcrypt.compareSync(
-        req.body.password,
-        user.password
-    );
-    if (!passwordIsValid) {
-        return res.status(401).send({
-        accessToken: null,
-        message: "Invalid Password!"
-        });
+
+    if(req.body.device_id !== null){       
+        UserDeviceId.findOne({
+            where: {
+                device_id: req.body.device_id,
+                user_id: user.id
+            }
+        }).then(device_token => {
+
+            if (device_token) {
+                UserDeviceId.update(
+                {
+                    firebase_token: req.body.firebase_token,    
+                },
+                { where: { user_id: user.id } }
+                )
+            }else{
+                const device_id = {
+                    user_id: user.id,
+                    device_id: req.body.device_id,
+                    firebase_token: req.body.firebase_token,
+                    device_type: req.body.device_type,
+                    dob: req.body.dob,
+                };
+                UserDeviceId.create(device_id)
+            }
+        })
     }
-  
-    var token = jwt.sign({ id: user.id }, "bezkoder-secret-key", {
-        expiresIn: 86400 // 24 hours
-    });
 
-    res.status(200).send({
-        status: true,
-        id: user.id,
-        message: "User login successfully!",
-        accessToken: token
-    });
-
-      })
-      .catch(err => {
-        res.status(500).send({ status: false, message: err.message })
-      });
-  };
-
-// forget Password
-
-
-  exports.forgetPassword = async (req, res) => {
-
-    const data = await Userdb.findOne({ where: { email: req.body.email } })
-    .then(() => {  
-
-        if (!data) {
-            return res.status(404).send({ message: "User Not found." });
+    Otp.findOne({
+        where: {
+            user_id: user.id
         }
-        
-    })
+    }).then(otp => {
 
-    if (data) {
-
-        // Time 
         const minutesToAdd = 2
         const currentDate = new Date()
         const futureDate = new Date(currentDate.getTime() + minutesToAdd * 60000)
-        const otpCode = Math.floor((Math.random() * 1000000) + 1)
-        const optData = {
-            user_id: data.id,
-            otp: otpCode,
-            expiryDate: futureDate
-        }
-        const otpResponse = await Otp.create(optData)
 
-        // Sending email 
-        const transporter = nodemailer.createTransport({
-            service: 'Gmail',
-            host: 'smtp.gmail.com',
-            port: 587,
-            secure: false,
-            auth: {
-                user: 'tushar.rathi860@gmail.com',
-                pass: 'vbjjjhalqrfbqpuw'
-            }
-        })
-
-        const mailOptions = {
-            from: 'tushar.rathi860@gmail.com',
-            to: 'snavi4551@gmail.com@gmail.com',
-            subject: 'Sending Email using Node.js',
-            text: `That was easy! OTP: ${otpResponse.otp}`
+        if(otp){
+            Otp.update(
+                {
+                    code: "1111", 
+                    expire_at: futureDate   
+                },
+                { where: { user_id: user.id } }
+            )
+        }else{
+           // console.log("yesss")
+            const optData = {
+                user_id: user.id,
+                code: "1111", 
+                expire_at: futureDate
+            };
+            const otpResponse = Otp.create(optData)
         }
 
-        transporter.sendMail(mailOptions, function (error, info) {
-            if (error) {
-                console.log(error)
-            } else {
-                console.log('Email sent: ' + info.response)
-            }
-        })
+        if(req.body.name == user.name){
+            var is_checked = 0;
+        }else{
+            var is_checked = 1; 
+        }
 
         res.status(200).send({
             status: true,
-            message: "OTP sent successfully!",
+            id: user.id,
+            is_checked: is_checked,
+            otp: "Otp send to you regsitered mobile number"
         });
-       
-    }
-    res.status(200).send({
-        status: false,
-        message: "Email does not exist!",
+
     });
 
+    })
+    .catch(err => {
+        res.status(500).send({ status: false, message: err.message })
+    });
+  };
+
+// Confirm OTP
+
+  exports.confirm_otp = async (req, res) => {
+
+    const currentDate = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '')
+    const data = await Userdb.findOne({ where: { id: req.body.user_id } })
+    if (data) {
+
+        const otp = await Otp.findOne({ where: { user_id: req.body.user_id } })
+        if (otp) {
+            if (otp.expire_at > currentDate) {
+                var token = jwt.sign({ id: data.id }, "bezkoder-secret-key", {
+                    expiresIn: 86400 // 24 hours
+                });
+
+                if(req.body.is_checked == 1){
+                    console.log("yesssss")
+                    Userdb.update(
+                        {
+                            name: req.body.name   
+                        },
+                        { where: { id: data.id } }
+                    )
+                }
+
+                res.send({status:true, message: "Otp Verified!" ,id: data.id,accessToken: token});
+            }else{
+                res.send({status:false, message: "OTP expired!!"});
+            }
+        }else{
+            res.status(200).send({
+                status: false,
+                message: "Something went wrong Please resend the otp",
+            });
+        }
+       
+    }else{
+        res.status(200).send({
+            status: false,
+            message: "User Not Found",
+        });
+    }
+   
 }
 
 

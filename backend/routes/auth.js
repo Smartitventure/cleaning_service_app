@@ -4,7 +4,7 @@ const controller = require('../controllers/authcontroller');
 
 router.post('/register_user',controller.create);
 router.post('/login_user',controller.login);
-router.post('/forgot_password',controller.forgetPassword);
+router.post('/confirm_otp',controller.confirm_otp);
 
 // route for logout
 

@@ -28,18 +28,6 @@ app.use(cookieParser('keyboard cat'))
 app.use('/', router);
 app.use('/api', verifyToken,app_router);
 
-// app.post('/api/profile', verifyToken, (req, res) => {  
-//     jwt.verify(req.token, 'bezkoder-secret-key', (err, authData) => {
-//       if(err) {
-//         res.sendStatus(403);
-//       } else {
-//         res.json({
-//           message: 'Post created...',
-//           authData
-//         });
-//       }
-//     });
-//   });
 
 // Verify Token
 function verifyToken(req, res, next) {

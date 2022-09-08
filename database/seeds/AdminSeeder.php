@@ -25,8 +25,7 @@ class AdminSeeder extends Seeder
         $user->status = 1 ;
         $user->dob = '2022-04-27';
         $user->join_date = '2022-04-27';
-        $user->last_seen = "2022-04-27";
-        $user->mobile_number = 2569857412;
+        $user->last_seen = '2022-04-27' ;
         $user->save();
     }
 }

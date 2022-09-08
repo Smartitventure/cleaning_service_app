@@ -20,7 +20,9 @@ class CreateUserDeviceIdsTable extends Migration
             $table->string('device_id')->nullable();
             $table->string('device_type')->nullable();
             $table->string('firebase_token')->nullable();
-            $table->timestamps();
+            // $table->timestamps();
+            $table->dateTime('createdAt')->nullable();
+            $table->dateTime('updatedAt')->nullable();
         });
     }
 

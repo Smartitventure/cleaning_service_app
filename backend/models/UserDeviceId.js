@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 const sequelize = require("../db/database");
 
-const Otp = sequelize.define("otp", {
+const UserDeviceId = sequelize.define("user_device_id", {
   id: {
     type: Sequelize.INTEGER,
     autoIncrement: true,
@@ -12,14 +12,18 @@ const Otp = sequelize.define("otp", {
     type: Sequelize.INTEGER,
     allowNull: false,
   },
-  code: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
+  device_id: {
+    type: Sequelize.STRING,
+    allowNull: true,
   },
-  expire_at: {
-    type: Sequelize.DATE,
+  device_type: {
+    type: Sequelize.STRING,
+    allowNull: true,
+  },
+  firebase_token: {
+    type: Sequelize.STRING,
     allowNull: true,
   }
 });
 
-module.exports = Otp;
+module.exports = UserDeviceId;

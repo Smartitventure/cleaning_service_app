@@ -32,6 +32,12 @@ Route::group(['middleware' => ['admin']], function () {
    Route::get('all-service-providers', 'AdminController@all_service_providers')->name('all-service-providers');
    Route::delete('service_provider/delete/{id}', 'AdminController@delete_service_provider')->name('service_provider/delete');
    Route::get('view-service-provider/{id}', 'AdminController@view_service_provider')->name('view-service-provider');
+   Route::get('add-services', 'AdminController@add_services')->name('add-services');
+   Route::post('store-service', 'AdminController@store_services')->name('store-service');
+   Route::get('edit-service/{id}', 'AdminController@edit_service')->name('edit-service');
+   Route::put('update-service/{id}', 'AdminController@update_service')->name('update-service');
+   Route::delete('delete-service/{id}', 'AdminController@delete_service')->name('delete-service');
+   Route::get('service', 'AdminController@add_services')->name('service');
    
 
 

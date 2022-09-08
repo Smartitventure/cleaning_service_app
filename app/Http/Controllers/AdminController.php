@@ -80,4 +80,64 @@ class AdminController extends Controller
         $service_provider = \App\User::find($id);
         return view('view_service_provider',compact('service_provider'));
     }
+
+    public function add_services(){
+        $services = \App\Service::orderBy('id','desc')->get();
+        $type = 1;
+        return view('add_services',compact('type','services'));
+    }
+    
+    public function store_services(Request $request){
+        $service = new \App\Service;
+        $service->service_name = $request->name;
+        if ($service->save())
+        {
+            return redirect()->route('service')->with(['alert' => 'success', 'message' => 'Service has been Added Successfully!.']);
+        }
+        else
+        {
+            return redirect()->route('service')->with(['alert' => 'danger', 'message' => 'Service has not been Added!.']);
+        }
+    }
+    
+    public function edit_service($id)
+    {
+        $services = \App\Service::orderBy('id','desc')->get();
+        $service =  \App\Service::find($id);
+        $type = 2;
+        return view('add_services',compact('services','type','service'));
+    }
+
+    public function update_service(Request $request, $id)
+    {
+    
+        $service =  \App\Service::find($id);
+        $service->service_name = $request->name;
+        if ($service->save())
+        {
+            return redirect()->route('service')->with(['alert' => 'success', 'message' => 'Service has been Updated Successfully!.']);
+        }
+        else
+        {
+            return redirect()->route('service')->with(['alert' => 'danger', 'message' => 'Service has not been Updated!.']);
+        }
+
+    }
+
+     public function delete_service($id)
+    {
+       //
+
+       $service = \App\Service::find($id);
+       if($service->delete())
+       {
+            return redirect()->route('service')->with(['alert' => 'success', 'message' => 'Service has been Deleted Successfully!.']);
+       }
+       else
+       {
+            return redirect()->route('service')->with(['alert' => 'danger', 'message' => 'Service has not been Deleted!.']);
+       }
+
+    }
+
 }

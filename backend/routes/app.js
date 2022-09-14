@@ -29,4 +29,6 @@ router.post('/add_fav_location',verifyAccessToken,controller.add_fav_location);
 
 router.get('/services',verifyAccessToken,controller.services);
 
+router.post('/request_services',verifyAccessToken,controller.request_services);
+
 module.exports = router;

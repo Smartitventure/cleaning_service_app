@@ -116,6 +116,16 @@ exports.services = async (req,res,next)=>{
   })
 }
 
+exports.request_services = async (req,res,next)=>{
+      const fav_location = {
+        user_id: user.id,
+        lat: req.body.lat,
+        long: req.body.long,
+    };
+    let result = await FavouriteLocation.create(fav_location)
+    res.send({status:true, message: "Location is Added"});
+}
+
 
 
 

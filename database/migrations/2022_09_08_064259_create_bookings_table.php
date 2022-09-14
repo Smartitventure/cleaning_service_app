@@ -14,7 +14,9 @@ class CreateBookingsTable extends Migration
     public function up()
     {
         Schema::create('bookings', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('address')->nullable();
             $table->string('address_lat')->nullable();
             $table->string('address_long')->nullable();
@@ -25,6 +27,7 @@ class CreateBookingsTable extends Migration
             $table->string('service_category');
             $table->string('comment');
             $table->integer('total_pay');
+            $table->integer('status')->default(0);
             $table->dateTime('createdAt')->nullable();
             $table->dateTime('updatedAt')->nullable();
         });

@@ -1,5 +1,6 @@
 const Userdb = require('../models/User');
 const FavouriteLocation = require('../models/FavouriteLocation');
+const Service = require('../models/Service');
 const { s3Uploadv2 } = require("./../s3Service");
 
 // profile
@@ -106,19 +107,13 @@ exports.update_information = async (req,res,next)=>{
 
 
 exports.services = async (req,res,next)=>{
-  await Userdb.findByPk(req.payload.id,{
-   include: [ {
-     model: FavouriteLocation,
-     attributes: ['id', 'lat', 'long']
-   }
-   ]
-   })
-   .then(function(userdb){
-       res.send({status:true, message: "User Details" ,user:userdb});
-   })
-   .catch(err=>{
-       res.send(err);
-   })
+  await Service.findAll()
+  .then(function(services){
+      res.send({status:true,services:services});
+  })
+  .catch(err=>{
+      res.send(err);
+  })
 }
 
 

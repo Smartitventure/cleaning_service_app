@@ -8,7 +8,7 @@
 					<div class="col-md-7">
 						<div class="row ">
 						<div class="col-md-12">
-							<div class="mainheadingtop">
+							<div class="mainheadingtop mainheadingtophome">
 								<h4>Hi <span>Admin</span>,Welcome back</h4>
 							</div>
 						</div>	
@@ -64,7 +64,11 @@
 								</div>
 							</div>
 						</div>
-						
+						<div class="col-md-12">
+							<div class="mainheadingtop mainheadingtophome">
+								<h4>Made Me <span>Customers</span></h4>
+							</div>
+						</div>
 						<div class="col-md-12">
 							<div class="pendingboxinner">
 								<!-- php	 -->
@@ -102,7 +106,7 @@
 					<div class="col-md-5">
 						<div class="row">
 							<div class="col-md-12">
-								<div class="Pendingbox">
+								<div class="Pendingbox mt-custom">
 									<!-- <h3>Pending </h3> -->
 									<div class="textpending">
 										<p>Service Providers</p>  </div>
@@ -171,14 +175,14 @@
 									$contact_us = \App\ContactUs::limit(5)->orderBy('id', 'DESC')->get();
 								  @endphp
 								<!-- endphp -->
-								  <div class="pendingboxinner">
+								  <div class="pendingboxinner mt22">
 								<div class="Pendingbox customerheadingbox">
 									<h3>Recent Contacts</h3>
 								</div>
 								@if(count($contact_us) > 0)
 								@foreach( $contact_us as $data)
 								<div class="imgbox2">
-									<a href=""> <img src="{{asset('images/Dummy.jpg')}}" /> </a>
+									<a href=""> <img src="{{asset('images/userdummy.png')}}" /> </a>
 									<div class="textbox2">
 										
 										<h6>{{$data->name}}</h6>

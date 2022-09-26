@@ -21,7 +21,7 @@
                                         <img src="{{ asset('images/mainlogo3.png') }}" />
                                     </div>
                                     <div class="leftformsectioninnerdata">
-                                        <h1>Welcome to <span>Cleaning Service</span></h1>
+                                        <h1>Welcome to <span>MaidMe Admin</span></h1>
                                         <h6>Please sign in to continue</h6>
                                         <form method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
                                             @csrf
@@ -43,7 +43,7 @@
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <div class="iconbox">
-                                                            <i class="fa fa-unlock-alt" aria-hidden="true"></i>
+                                                            <i class="fa fa-key" aria-hidden="true"></i>
                                                         </div>
                                                         <input type="Password" name="password" class="form-control customchangesemail password-input {{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required placeholder="Enter password" />
 
@@ -57,8 +57,9 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
+                                                <div class="col-md-12">
                                                 <button type="submit" class="btn btn-primary custombuttonchanges login">{{ __('Login') }}</button>
+                                                </div>
                                             </div>
                                         </form>
                                     </div>

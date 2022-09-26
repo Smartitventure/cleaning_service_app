@@ -27,7 +27,7 @@
                     <thead>
                     <tr>
                         <th>Id</th>
-                        <th>Customer Name</th>
+                        <th>Service Provider Name</th>
                         <th>Email</th>
                         <th>Status</th>
                         <th colspan="2">Action</th>
@@ -47,8 +47,8 @@
                         
                         @endif
                         <td>
-                            <a href="#deleteEmployeeModal"  onclick="deleteData('{{route('service_provider/delete',$service_providers->id)}}');" data-toggle="modal"><i class="fa fa-trash" ></a>
-                            <a href="{{route('view-service-provider',$service_providers->id)}}"   ><i class="fa fa-eye" aria-hidden="true" data-toggle="tooltip" title="Delete"></a>
+                            <a class="btndeleteicon colred" href="#deleteEmployeeModal"  onclick="deleteData('{{route('service_provider/delete',$service_providers->id)}}');" data-toggle="modal"><i class="fa fa-trash" ></i></a>
+                            <a class="btndeleteicon"  href="{{route('view-service-provider',$service_providers->id)}}"   ><i class="fa fa-eye" aria-hidden="true" data-toggle="tooltip" title="Delete"></i></a>
                         </td>
                     </tr>  
                     @endforeach

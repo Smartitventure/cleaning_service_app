@@ -46,9 +46,11 @@
                             <td> <a href="{{ route('customer_status',['status'=>1,'id'=>$data->id])}}" class="btn btn-danger">Block</a></td> 
                         
                         @endif
-                        <td>
-                            <a href="#deleteEmployeeModal"  onclick="deleteData('{{route('customer/delete',$data->id)}}');" data-toggle="modal"><i class="fa fa-trash" ></a>
-                            <a href="{{route('view-customer',$data->id)}}" ><i class="fa fa-eye" aria-hidden="true" data-toggle="tooltip" title="View"></a>
+                       
+
+                          <td>
+                            <a class="btndeleteicon colred" href="#deleteEmployeeModal"  onclick="deleteData('{{route('customer/delete',$data->id)}}');" data-toggle="modal"><i class="fa fa-trash" ></i></a>
+                            <a class="btndeleteicon"  href="{{route('view-customer',$data->id)}}"   ><i class="fa fa-eye" aria-hidden="true" data-toggle="tooltip" title="Delete"></i></a>
                         </td>
                     </tr>  
                     @endforeach

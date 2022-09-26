@@ -8,7 +8,7 @@
 				<li>
 					<a href="{{route('home')}} " class="{{ (request()->is('home')) ? 'active' : '' }}"> <span class="icon "><i class="fa fa-server" aria-hidden="true"></i></span> <span class="title ">Dashboard</span> </a>
 				</li>
-				<li class="sidebar-dropdown active ">
+				<!-- <li class="sidebar-dropdown active ">
 					<a href="#"> <i class="fa fa-home home-custom " aria-hidden="true"></i><span>Service's</span> <i class="fa fa-angle-right right-custom" aria-hidden="true"></i> </a>
 					<ul class="sidebar-submenu" style="display:none;">
 						<li> <a href="{{route('add-services')}}">Add
@@ -17,28 +17,29 @@
 						<li> <a href="#">View</a> </li>
 						
 					</ul>
-				</li>
+				</li> -->
 				<li class="sidebar-dropdown  ">
-					<a href="{{route('all-customers')}} {{ (request()->is('home')) ? 'active' : '' }}"> <i class="fa fa-home home-custom " aria-hidden="true"></i><span>Customers</span> </a>
+					<a href="{{route('add-services')}}" class="{{ (request()->is('add-services')) ? 'active' : '' }}"> <i class="fa fa-home home-custom " aria-hidden="true"></i><span>Services</span> </a>
 				</li>
-				<li class="sidebar-dropdown  ">
-					<a href="{{route('all-service-providers')}} {{ (request()->is('home')) ? 'active' : '' }}"> <i class="fa fa-home home-custom " aria-hidden="true"></i><span>Service Providers</span> </a>
+				<li class="sidebar-dropdown">
+					<a href="{{route('all-customers')}}" class="{{in_array(Route::currentRouteName(),['all-customers','view-customers']) ? 'active' : '' }}"> <i class="fa fa-users" aria-hidden="true"></i><span>Customers</span> </a>
 				</li>
+				<li class="sidebar-dropdown">
+					<a href="{{route('all-service-providers')}}" class="{{in_array(Route::currentRouteName(),['all-service-providers','view-service-provider']) ? 'active' : '' }}"> <i class="fa fa-home home-custom " aria-hidden="true"></i><span>Service Providers</span> </a>
+				</li>  
 				<li class="sidebar-dropdown  ">
-					<a href="#"> <i class="fa fa-home home-custom " aria-hidden="true"></i><span>Earnings</span> </a>
+					<a href="#"> <i class="fa fa-money" aria-hidden="true"></i><span>Earnings</span> </a>
 				</li>
 				<li class="sidebar-dropdown ">
-					<a href="#"> <i class="fa fa-home home-custom " aria-hidden="true"></i><span>FAQ's</span> </a>
+					<a href="#"> <i class="fa fa-home home-custom " aria-hidden="true"></i><span>About Us</span> </a>
 				</li>
-				<li class="sidebar-dropdown ">
+				<!-- <li class="sidebar-dropdown ">
 					<a href="#"> <i class="fa fa-home home-custom " aria-hidden="true"></i><span>Customers</span> </a>
-				</li>
-				<li class="sidebar-dropdown ">
-					<a href="#"> <i class="fa fa-home home-custom " aria-hidden="true"></i><span>Earnings</span> </a>
-				</li>
+				</li> -->
+				
 				<li class="sidebar-dropdown  ">
-					<a href="#"> <i class="fa fa-home home-custom " aria-hidden="true"></i><span>FAQ's</span> </a>
-				</li>
+					<a href="#"><i class="fa fa-question-circle" aria-hidden="true"></i><span>FAQ's</span> </a>
+				</li> 
 			</ul>
 		</nav>
 	</div>

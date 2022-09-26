@@ -6,7 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Dashboard</title>
+	<title>Made me</title>
 
 	<!-- Bootstrap -->
 	<link rel="icon" href="{{ asset('images/mainlogo.png') }}" type="image/png" sizes="16x16">
@@ -35,7 +35,7 @@
                 <div class="profilebox">
                     <div class="dropdown-custom2">
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <a href="#"> <img src="{{asset('images/dummy.jpg')}}" /></a>
+                            <a href="#"> <img src="{{asset('images/dummy.png')}}" /></a>
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item" href="#">Profile</a>

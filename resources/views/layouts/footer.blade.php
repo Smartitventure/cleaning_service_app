@@ -10,6 +10,7 @@
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 	
+
 	 <!-- Delete modal jQuery-->
 
         <script>
@@ -140,7 +141,7 @@
 				{
 				$(".sidebar-dropdown > a").click(function()
 				{
-				$(".sidebar-submenu").slideUp(200);
+				$(".sidebar-submenu").slideDown(200);
 				if($(this).parent().hasClass("active"))
 				{
 					$(".sidebar-dropdown").removeClass("active");
@@ -149,7 +150,7 @@
 				else
 				{
 					$(".sidebar-dropdown").removeClass("active");
-					$(this).next(".sidebar-submenu").slideDown(200);
+					$(this).next(".sidebar-submenu").slideUp(200);
 					$(this).parent().addClass("active");
 				}
 				});

@@ -1,26 +1,228 @@
 
     
-    @media (min-width: 1301px) and (max-width: 1600px) {
-
+    @media (min-width: 1400x) and (max-width: 1600px) {
+      
     }
-    @media (min-width: 992px) and (max-width: 1300px) {
-      .notificationtime h6 {
-        margin-top: 21px;
-        
-        font-size: 12px;
+    @media (min-width: 1200px) and (max-width: 1399px) {
+      .textbox {
+        width: calc(100% - 100px);
+        min-width: 21%;
     }
-    .notificationtextbox p {
-      margin-top: 23px;
-     
-      font-size: 14px;
+    .textbox2 {
+    
+      width: calc(100% - 100px);
+      min-width: 21%;
   }
-  .nav-tabs .nav-link.custom-tab {
+  .Pendingbox h3 {
+    padding-left: 5px;
+    font-size: 17px;
+}
+.textpending p {
+  padding-right: 7px;
+  padding-top: 2px;
+  font-size: 15px;
+}
+.nav-tabs .nav-link.custom-tab1 {
+  width: 48%;
+  margin-bottom: 15px;
+  margin-top: 12px;
+}
+.nav-tabs .nav-link.custom-tab {
+  font-size: 17px;
+  padding: 6px 20px 6px 20px;
+  min-width: 121px;
+}
+.pendingboxinner {
+  padding: 19px;
+}
+.buttonbox2 {
+  padding-left: 0px;
+}
+.buttonbox2 a {
+  padding: 7px 7px 6px 11px;
+  font-size: 11px;
+  width: 91px;
+}
+.textbox2 h6 {
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+.textbox h6 {
+  font-size: 14px;
+}
+.ApprovedArtist h4 {
+  padding-bottom: 15px;
+}
+.imgbox img {
+  width: 40px;
+  margin-right: 13px;
+  height: 40px;
+}
+
+.buttonbox a {
+  font-size: 9px;
+}
+button.dropdown-toggle.dropdown-custom {
+  margin-right: 12px;
+}
+.rightbox h2 {
+  font-size: 18px;
+ 
+}
+.personal-info h4 {
+ 
+  font-size: 18px;
+}
+.custom-savebutton button {
+  width: 18%; 
+  padding: 10px 30px;
+  margin-top: 25px;
+  font-size: 16px;
+  
+}
+.contactinfoleft h5 {
+ 
+  font-size: 16px;
+}
+.mail-box p {
+  font-size: 16px;
+}
+p.text-address {
+  
+  font-size: 16px;
+}
+.mystatusbtn [type="radio"]:checked + label, .mystatusbtn [type="radio"]:not(:checked) + label {
+ font-size: 16px;
+  }
+  .custom-pending {
+   font-size: 16px;
+    margin-bottom: 24px;
+    }
+    .leftbox h3 {
+      font-size: 20px;
+  }
+  h1.nodatafoundheading {
+    font-size: 23px;
+    }
+    .gallerynodatafound h3 {
+      font-size: 21px;
+  }
+  .contactinforight h5 {
    
-    min-width: 152px;
     font-size: 16px;
-   
+}
+.innerboxdata h6 {
+  
+  font-size: 16px;
+  
+}
+span.custombookingheading {
+  
+  font-size: 13px;
+}
+.innerboxdata h5 {
+  font-size: 14px;
+  
+}
+span.custompriceheading {
+  
+  font-size: 14px;
+}
+.innerboxdata h3 {
+  
+  margin-bottom: 5px;
+  
+}
+.headinginnerbox h5 {
+  
+  font-size: 14px;
+}
+.innerboxdata h6 {
+  margin-top: 18px;
+  
+}
+.imageboxinner img {
+  
+  width: 60px;
+  height: 60px;
+}
+.headingtopcustmoreinfo {
+  top: -22px;
+  width: 84%;
+ padding: 10px;
+}
+.headingtopcustmoreinfo h3 {
+  font-size: 16px;
+}
+.innerinfotable h3 {
+  font-size: 15px;
+}
+p.customnumberinfo {
+  font-size: 15px;
+ 
+}
+.imagecirclebox img {
+  width: 80px;
+  height: 80px;
+}
+.imagecirclebox {
+ 
+  margin-top: 10px;
+}
+.messagetext p {
+  font-size: 16px;
+}
+.mainbookingheading h4 {
+  
+  font-size: 20px;
+}
+.flowchart svg {
+  width: 118px;
+}
+#cont:after {
+  left: 40%;
+font-size: 24px;
+
+}
+.flowchart svg {
+  margin-right: 39px;
 }
     }
+    @media (min-width: 992px) and (max-width: 1199px) {
+
+        .buttonbox a {
+        
+            margin-left: 4px;
+           
+            padding: 1px;
+        }
+        .buttonbox {
+          padding-top: 0px;
+          padding-left: 3px;
+      }
+      .textbox p {
+        font-size: 8px;
+       
+    }
+    .textbox h6 {
+      margin-bottom: 0px;
+      font-size: 10px;
+    }
+    .imgbox img {
+      width: 40px;
+      margin-right: 8px;
+     
+    }
+    .imgbox {
+     
+      padding-left: 17px;
+      padding-bottom: 17px;
+    }
+    
+ 
+        }
+
+    
 
     @media (min-width: 768px) and (max-width: 991px) {
 
@@ -28,427 +230,412 @@
 
     
     @media (min-width: 320px) and (max-width: 767px) {
-        
-      .profilepagemainbannersection {
-        
-        padding: 99px;
+
+        .toggle{
+            display: block!important;
+          }
+          
+          .sidemenubar.active {
+            margin-left: 0px;
+        }
+        .maintop.active {
+              
+           padding-left: 0px;
+         
+        }
+        .headertop.active {
+          margin-left: 0px;
+      }
+         .headingbox h6 {
+          margin-left: -35px;
+         
+          font-size: 10px;
+      }
+        .headingbox {
+          padding-bottom: 0px;
+      }
+      .profilebox {
+        margin-top: -24px;
+        position: absolute;
+        right: -95px;
     }
-    .profilecirclebox img {
-      
-      width: 90px;
-      height: 90px;
+    .mainsectionbox {
+      position: relative;
+      padding: 0px;
   }
-  .profiletextrightbox2 h3 {
+  .maintop.active .mainsectionbox:after {
+    position: absolute;
+    left: 0px;
+    content: "";
+    background: #00000078;
+    height: 100%;
+    top: 0px;
+    width: 100%;
+    z-index: 1;
+}
+  .textbox h6 {
+    font-size: 13px;
+    margin-top: 7px;
+  }
+  .buttonbox {
+    padding-left: 20px;
+    padding-top: 6px;
+  }
+  
+  .buttonbox2 a {
+    
+    padding: 5px 10px 5px 10px;
+   
+    
+    font-size: 9px;
+    text-align: center;
+  }
+  .buttonbox2 {
+    
+    padding-left: 0px;
+   
+  }
+  .textbox2 h6 {
+    margin-bottom: 0px;
+    font-size: 12px;
+    margin-top: 10px;
+  }
+  .imgbox2 img {
+    width: 37px;
+   
+  }
+  .imgbox2 {
+    
+   
+    padding-bottom: 20px;
+  }
+  span.number-custom {
+    margin-right: 12px;
+   
+    width: 30px;
+    height: 30px;
+    
+    padding-top: 4px;
+    
+    margin-top: 4px;
+  }
+  
+  .Pendingbox h3 {
+    padding-left: 15px;
+    font-size: 19px;
+    margin-top: 8px;
+    
+  }
+  .Pendingbox {
+    
+    padding: 0px;
+    
+  }
+  .sidemenubar {
+    z-index: 9;
+    margin-left: -280px;
+}
+  
+.mainboxleft h2 {
+    margin-top: 35px;
+    margin-bottom: 10px;
+}
+  .textpending p {
+    padding-right: 28px;
+    font-size: 20px;
+  }
+  .pendingboxinner {
+   
+    padding: 7px;
+}
+.bank-innersection {
+  margin-top: 40px;
+  padding: 0px;
+}
+  .table-wrapper {
+    
+    padding: 8px 0px;
+  
+    }
+    .tattotsylehed h4 {
+      
+      margin-top: 31px;
+  }
+  .form-group.custom-from {
+    padding-bottom: 0px;
+}
+button.btn.btn-danger.custom-innerbutton {
+  
+  margin-bottom: 10px;
+  padding: 7px;
+}
+.faqheading h4 {
+  font-size: 16px;
+  margin-top: 39px;
+}
+.mystatusbtn [type="radio"]:checked + label, .mystatusbtn [type="radio"]:not(:checked) + label {
+  padding-left: 11px;
+  font-size: 14px;
+  padding-right: 32px;
+}
+.mainsectionbox.mainsectionbox-cus button.btn.btn-danger.custom-innerbutton {
+  margin-top: 20px!important;
+  padding: 8px;
+  
+}
+.table-title-add h2 {
+  font-size: 17px;
+  padding: 13px 0px;
+ 
+  margin-top: 36px;
+}
+
+select#select_user_type {
+  
+  font-size: 14px;
+  
+  }
+  .custom-control-lg {
+    
     font-size: 14px;
 }
-.profiletextrightbox2 p {
-  
-  font-size: 11px;
-}
-.profiletextrightbox2 h6 {
+
+table.table.table-striped.table-hover.dataTable td {
   font-size: 12px;
+  font-weight: 400;
 }
-.editprofilebuttonright a {
- padding: 6px 17px;
-  display: block;
-  font-size: 11px;
-}
-.editprofilebuttonright h5 {
-  font-size: 13px;
-  margin-left: 6px;
-    margin-top: 10px;
-}
-.textsectioninner h6 {
+table.dataTable thead>tr>th {
  
   font-size: 11px;
+}
+.table-title h2 {
+ 
+  font-size: 18px;
+}
+.table-title {
+  
+  margin-top: 0px;
+}
+main {
+  margin-left: 0px;
+  padding-top: 35px;
+}
+header {
+  margin-left: 107px;
+  width: calc(100% - 0px - 205px);
 }
 .nav-tabs .nav-link.custom-tab {
-  min-width: 80px;
-  font-size: 14px;
-  margin-right: 3px;
-  padding: 8px 8px;
-  margin-bottom: 9px;
-}
-.categorytattoobox ul li {
-  padding-right: 24px;
-  padding: 8px 8px;
-  font-size: 12px;
-  
-  margin-right: 7px;
-}
-.reviewinnersection {
-  
-  padding: 10px;
-  margin-bottom: 3px;
-    margin-top: 10px;
-}
-.reviewimgbox img {
-  
-  width: 40px;
-  height: 40px;
-  
-}
-.reviewtextboxinner h4 {
-  font-size: 12px;
-}
-.reviewtextboxinner p {
-  
-  font-size: 9px;
-}
-.reviewratingbox i {
-  font-size: 9px;
-}
-.categorytattoobox {
-  margin-left: 0px;
-  
-}
-.profilecirclebox {
- 
-  margin-top: -35px;
-}
-.editprofilebuttonright h4 {
-  margin-left: 24px;
-  font-size: 19px;
-}
-.editprofilebuttonright {
- 
-  margin-top: 17px;
-}
-.centerservicebutton a {
-  
-  padding: 7px 10px;
-  border-radius: 20px;
-  font-size: 12px;
-}
-.serviceinnertextbox {
- 
-  padding: 15px;
-  margin-top: 19px;
- 
-}
-.servicetextboxprice h4 {
+  min-width: 152px;
+  margin-bottom: 8px;
   font-size: 15px;
 }
-.servicepricebox h5 {
-  font-size: 15px;
-}
-.servicetextboxprice p {
-  font-size: 12px;
- 
-}
-.reviewtextboxinner {
-  margin-left: 13px;
-  
-    }
-    .monthleftbox h4 {
-      font-size: 13px;
-  }
-  .infotimebox h3 {
-    font-size: 14px;
-    margin-top: 0px;
-}
-.infophonecustom {
-  margin-right: 0px;
-}
-.custombuttonchanges {
- 
-  padding: 8px;
-  
-  font-size: 17px;
-  
-}
-.customchangesemail {
-  
-  font-size: 14px;
-}
-.customrememberchanges {
-  font-size: 12px;
-  top: 6px;
- }
- .leftformsectionbox {
-  
-  height: 44vh;
-}
-.leftformsectionbox img {
- 
-  height: 38vh;
-}
-.customforgot {
-  width: 50%;
-}
-.customremeber {
-  width: 50%;
-  margin-top: 7px;
-}
-.forgotpassword a {
-  
-  font-size: 12px;
-}
-.customtabs2 {
-  padding: 7px 26px !important;
-  font-size: 16px!important;
-  margin-left: 17px;
-}
-.customchangesemail2 {
-  
-font-size: 13px;
-}
-.lablesos {
-  
-  font-size: 14px;
-}
-.custombuttonchanges2 {
- 
-  padding: 5px 37px;
-  
-  font-size: 16px;
-  
-}
-.allcheckboxwrapper label {
-  margin-right: 13px;
- padding: 8px 41px 8px 17px;
- font-size: 15px;
-}
-.customiconplus {
- 
-  top: 8px;
-}
-.custompopup {
- padding: 8px 11px;
-  font-size: 13px;
-}
-.search-input {
-  width: 66%;
-  
-}
-.mainbannertopsection {
-  
-  padding: 57px;
-  
-}
-.dateheading h6 {
-  font-size: 15px;
-  
-}
-.custombookingbutton {
-  width: 50%;
-  margin-top: -5px;
-}
-.customdateheading {
-  width: 50%;
-}
-.bookingleftbox {
-  
-  padding: 4px;
-  
-}
-.bookingimagebox img {
-  width: 79px;
- 
-  margin-top: 9px;
-  margin-left: 10px;
-}
-.profiletextbox h3 {
-  font-size: 12px;
-}
-.profiletextbox p {
-  margin-top: 7px;
-  margin-bottom: 7px;
-  font-size: 13px;
-}
-.profiletextbox span {
-  font-size: 10px;
-}
-.pendingboxright {
-  
-  margin-top: 0px;
-  margin-right: 14px;
-  
-  padding-left: 32px;
-}
-.pendingboxright h5 {
- 
-  font-size: 13px;
-  
-}
-.pendingboxright h6 {
-  margin-top: 6px;
-  margin-bottom: 6px;
 
+.textbox2 {
+  word-break: break-all;
 }
-.pendingboxright h2 {
-  font-size: 14px;
+.leftbox h3 {
  
+  font-size: 20px;
+  padding-bottom: 15px;
 }
-.Allbooking a {
+p.text-address {
   
-  padding: 6px 16px;
-  
-  font-size: 12px;
+  font-size: 14px;
 }
-.profiletextbox {
-  margin-left: 20px;
+.mail-box p {
+  font-size: 14px;
+}
+.mail-box {
+  
+  padding-top: 13px;
+}
+.custom-savebutton button {
+  min-width: 92px;
+  padding: 5px 30px;
+ 
+  font-size: 14px;
+  
   margin-top: 10px;
 }
-.custompendingheading {
-  width: 33%;
-}
-.bookingtopbutton a {
- 
-  font-size: 16px;
- 
-}
-.mainheadingtop {
-  
-  margin-top: 12px;
-  margin-bottom: 12px;
-
-}
-.mainheadingtop h3 {
-  font-size: 15px;
-}
-.profileboximage img {
-  width: 91px;
-  
-}
-.profiletext h4 {
-  font-size: 13px;
-}
-.profiletext h6 {
-  margin-top: 3px;
-  margin-bottom: 5px;
-  font-size: 12px;
-}
-.messagebox {
-  
-  
-  padding: 5px 5px;
- 
-  font-size: 13px;
-}
-.messagebox a i {
-  font-size: 13px;
-  
-}
-.timebox {
-  margin-top: 5px;
-  padding: 8px;
-  
-}
-.profiletextrightbox {
-  padding: 6px;
-  margin-left: 0px;
-  margin-top: 20px;
-  
-}
-.timebox h6 {
+.custom-control {
   
   font-size: 14px;
-}
-.buttonfooterbox a {
-  padding: 10px 40px;
-  margin-left: 0px;
-  margin-right: 20px;
-}
-.profiletext {
   
-  margin-top: -20px;
 }
-.profiletextrightbox h5 {
+.personal-info h4 {
+ 
+  font-size: 16px;
+}
+.rightbox h2 {
   font-size: 16px;
   
 }
-.profiletextrightbox p {
-  margin-top: 11px;
+.contactinforight {
   
-  font-size: 12px;
-}
-.confirmsdatebox h5 {
- 
-  font-size: 14px;
-}
-.datebox h6 {
-  font-size: 14px;
-  
-}
-.timeboxinner h2 {
-  font-size: 14px;
- 
-}
-.totolleftbox h5 {
-  font-size: 15px;
-}
-.totolrightbox h5 {
-  font-size: 15px;
-}
-.custombuttonbottom {
-  margin-top: 39px;
-  margin-bottom: 0px;
-  padding: 9px 32px;
-  font-size: 16px;
-}
-.leftformsectionbox img {
- 
-  height: 33vh;
-}
-.leftformsectionbox {
-  
-  height: 39vh;
-}
-.reviewratingbox {
-  
-  width: 29%;
-}
-.addtattooseemorebutton a {
-  
-  padding: 5px 4px;
- 
-  display: block;
-  font-size: 13px;
-}
-.notificationimgbox img {
-  width: 60px;
-  height: 60px;
- 
-}
-.notificationtextbox p {
-  margin-top: 9px;
-  margin-left: 8px;
-}
-.notificationtime h6 {
-  margin-top: 6px;
-  margin-right: -14px;
-  font-size: 13px;
-}
-.notificationtextbox p {
-  margin-top: 16px;
-  margin-left: 0px;
-  font-size: 12px;
-}
-.notificationinnerbox {
-  
-  padding: 4px;
-}
-.notificationtime h6 {
-  margin-top: 16px;
-  
-  margin-right: 3px;
-  font-size: 10px;
-}
-.messagesprofilebox img {
-  width: 50px;
-  height: 50px;
- 
-}
-.messagesprofiletextbox h4 {
-  font-size: 15px;
   margin-top: 0px;
 }
-.messagestimerightbox {
-  
-  margin-top: 8px;
+.contactinfoleft {
+  margin-bottom: 0px;
+  margin-top: 0px;
 }
-.messagesinnersectionright h3 {
+.contactinfoleft h5 {
+  
   font-size: 16px;
 }
-  }
+.contactinforight h5 {
+ 
+  font-size: 16px;
+}
+.rightbox {
+  
+  margin-top: 25px;
+  margin-bottom: 15px;
+}
+.custom-pending {
+  margin-bottom: 0px;
+    margin-top: 0px;
+  width: 35%;
+  padding: 5px 20px;
+ 
+  font-size: 14px;
+  
+}
+.mystatusbtn [type="radio"]:checked + label:before, .mystatusbtn [type="radio"]:not(:checked) + label:before {
+  
+  left: -10px;
+  top: 0px;
+  width: 18px;
+  height: 18px;
+  
+}
+.mystatusbtn [type="radio"]:checked + label:after, .mystatusbtn [type="radio"]:not(:checked) + label:after {
+ 
+  width: 10px;
+  height: 10px;
+  
+  top: 4px;
+  left: -6px;
+  
+}
+.custom-buttonbox {
+  margin-left: 22px;
+  margin-bottom: 16px;
+}
+.table-innerdata {
+  
+  padding: 0px;
+}
+.totolEarning {
+  padding-top: 21px;
+  padding-bottom: 0px;
+}
+.nav-tabs .nav-link.custom-tab1 {
+  
+  font-size: 16px;
+  
+}
+button.dropdown-toggle.dropdown-custom {
+  margin-right: 10px;
+}
+h1.nodatafoundheading {
+ 
+  font-size: 20px;
+}
+.maintoplinkbutton {
+  margin-left: 5%;
+}
+.maintabsright {
+ 
+  margin-left: 1%;
+}
+.table-title-add .row {
+  margin: 0px;
+}
+.customtableinnerbox {
+  padding: 15px;
+}
+}
+.table-wrapper {
+  overflow: auto;
+}
+/* .headinginnerbox h5 {
+  
+  font-size: 14px;
+}
+.heading-section {
+  margin-top: 40px;
+}
+.imageboxinner img {
+ 
+  width: 60px;
+  height: 60px;
+}
+.innerboxdata h3 {
+  font-size: 14px;
+  
+}
+span.custombookingheading {
+ 
+  font-size: 14px;
+}
+.innerboxdata h6 {
+  
+  font-size: 16px;
+ 
+}
+.viewmorebutton a {
+  font-size: 16px;
+}
+.headingtopcustmoreinfo {
+  
+  width: 78%;
+  
+}
+.headingtopcustmoreinfo h3 {
+  font-size: 14px;
+}
+.headingtopcustmoreinfo {
+  top: -23px;
+  width: 78%;
+  padding: 12px;
+}
+.mainbookingheading h4 {
+ font-size: 18px;
+  margin-top: 15px;
+}
+.imagecirclebox img {
+ width: 80px;
+height: 80px;
+}
+.imagecirclebox h5 {
+  font-size: 17px;
+}
+.messagetext p {
+  font-size: 15px;
+}
+.innerinfotable h3 {
+  font-size: 14px;
+}
+p.customnumberinfo {
+  font-size: 14px;
+  
+}
+.messagetext p i {
+  margin-left: 5px;
+  margin-right: 9px;
+}
+.custmoreinfoleftbox {
+  margin-bottom: 45px;
+}
+.imagecirclebox {
+ 
+  margin-top: 10px;
+}
+.headinginnerbox {
+margin-bottom: 0px;
+  width: 80%;
+  margin-left: 38px;
+}
+.innerboxdata {
+ margin-top: 20px;
+ } */

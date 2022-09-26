@@ -21,7 +21,10 @@ class CreateReviewsTable extends Migration
             $table->foreign('service_provider_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('service_id');
             // $table->foreign('service_id')->references('id')->on('services')->onDelete('cascade');
-            $table->integer('rating_star');
+            $table->integer('rating_star')->default(0);
+            $table->integer('punctuality')->default(0);
+            $table->integer('speed')->default(0);
+            $table->integer('cleaning')->default(0);
             $table->string('comment');
             // $table->timestamps();
             $table->dateTime('createdAt')->nullable();

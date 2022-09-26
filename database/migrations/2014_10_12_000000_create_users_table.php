@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('gender');
             $table->string('role');
             $table->string('company')->nullable();
-            $table->string('email')->unique();
+            $table->string('email')->nullable();
             $table->unsignedBigInteger('mobile_number')->unique();
             $table->string('country');
             $table->string('language');

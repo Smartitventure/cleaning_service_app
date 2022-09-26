@@ -1,6 +1,6 @@
 var express = require("express");
 var router = express.Router();
-const controller = require('../controllers/appcontroller');
+const controller = require('../controllers/providerAppController');
 const { verifyAccessToken } = require('../helpers/jwt_helper')
 
 const multer = require("multer");
@@ -22,17 +22,10 @@ const upload = multer({
 });
 
 router.get('/profile',verifyAccessToken ,controller.profile);
-
+router.get('/customer_requested_bookings',verifyAccessToken ,controller.customer_bookings);
+router.post('/customer_booking_detail',verifyAccessToken ,controller.customer_booking_detail);
+router.post('/add_reviews',verifyAccessToken ,controller.add_reviews);
+router.post('/provider_request',verifyAccessToken ,controller.provider_request);
 router.post('/update_information',upload.single("file"),verifyAccessToken, controller.update_information);
-
-router.post('/add_fav_location',verifyAccessToken,controller.add_fav_location);
-
-router.get('/services',verifyAccessToken,controller.services);
-
-router.post('/request_services',verifyAccessToken,controller.request_services);
-
-router.get('/requested_bookings',verifyAccessToken,controller.requested_bookings);
-
-router.post('/booking_details',verifyAccessToken,controller.booking_details);
 
 module.exports = router;

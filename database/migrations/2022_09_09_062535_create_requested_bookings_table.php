@@ -21,7 +21,9 @@ class CreateRequestedBookingsTable extends Migration
             $table->foreign('service_provider_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('booking_id');
             $table->foreign('booking_id')->references('id')->on('bookings')->onDelete('cascade');
-            $table->integer('provider_price');
+            $table->string('provider_image')->nullable();
+            $table->char('provider_comment')->nullable();
+            $table->string('provider_name')->nullable();
             $table->dateTime('createdAt')->nullable();
             $table->dateTime('updatedAt')->nullable();
         });

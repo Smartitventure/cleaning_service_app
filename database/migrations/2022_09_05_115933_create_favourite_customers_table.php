@@ -19,7 +19,6 @@ class CreateFavouriteCustomersTable extends Migration
             $table->foreign('customer_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('service_provider_id');
             $table->foreign('service_provider_id')->references('id')->on('users')->onDelete('cascade');
-            // $table->timestamps();
             $table->dateTime('createdAt')->nullable();
             $table->dateTime('updatedAt')->nullable();
         });

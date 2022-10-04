@@ -38,6 +38,9 @@ Route::group(['middleware' => ['admin']], function () {
    Route::put('update-service/{id}', 'AdminController@update_service')->name('update-service');
    Route::delete('delete-service/{id}', 'AdminController@delete_service')->name('delete-service');
    Route::get('service', 'AdminController@add_services')->name('service');
+
+   
+   Route::get('my-post', 'AdminController@myPost')->name('my-post');
    
 
 

@@ -140,4 +140,19 @@ class AdminController extends Controller
 
     }
 
+    
+    public function myPost(Request $request)
+    {
+    	$posts = \App\ContactUs::paginate(7);
+
+
+    	if ($request->ajax()) {
+    		$view = view('data',compact('posts'))->render();
+            return response()->json(['html'=>$view]);
+        }
+
+
+    	return view('my-post',compact('posts'));
+    }
+
 }

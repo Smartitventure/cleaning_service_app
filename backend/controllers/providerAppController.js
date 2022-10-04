@@ -1,6 +1,6 @@
 const Userdb = require('../models/User');
 const RequestedBooking = require('../models/RequestedBooking');
-const Service = require('../models/Service');
+const HireProvider = require('../models/HireProvider');
 const User = require('../models/User');
 const Booking = require('../models/Booking');
 const { s3Uploadv2 } = require("./../s3Service");

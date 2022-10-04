@@ -1,6 +1,7 @@
 const Sequelize = require("sequelize");
 const sequelize = require("../db/database");
 const RequestedBooking = require('../models/RequestedBooking');
+const HireProvider = require('../models/HireProvider');
 const User = require('../models/User');
 
 const Booking = sequelize.define("bookings", {
@@ -67,5 +68,9 @@ const Booking = sequelize.define("bookings", {
 
 Booking.hasMany(RequestedBooking, { foreignKey: 'booking_id'});
 RequestedBooking.belongsTo(Booking,{ foreignKey: 'booking_id'});
+
+
+Booking.hasMany(HireProvider, { foreignKey: 'booking_id'});
+HireProvider.belongsTo(Booking,{ foreignKey: 'booking_id'});
 
 module.exports = Booking;

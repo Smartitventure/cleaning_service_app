@@ -3,6 +3,8 @@ const FavouriteLocation = require('../models/FavouriteLocation');
 const RequestedBooking = require('../models/RequestedBooking');
 const Service = require('../models/Service');
 const Booking = require('../models/Booking');
+const HireProvider = require('../models/HireProvider');
+const Review = require('../models/Review');
 const { s3Uploadv2 } = require("./../s3Service");
 
 // profile
@@ -160,50 +162,60 @@ exports.requested_bookings = async (req,res,next)=>{
       where: { user_id: user.id , status:0},
       include: [ {
         model: RequestedBooking,
-        attributes: ['id','provider_image']
+        attributes: ['service_provider_id','provider_image']
       }
       ]
     })
 
-    // const requested_bookings = [];
-
-    // // requested_bookings.push(booking_data);
-
-    // for (var i = 0; i < booking_data.length; i++) {
-
-    //   const user_images = [];
-
-    //   var value = booking_data[i];
-     
-    //   var booking_provider = value.requested_bookings
-
-    //   var obj = {};
-      
-    //   for (var j = 0; j < booking_provider.length; j++) {
-
-    //     var name = "name";
-
-    //     var data = booking_provider[j];
-
-    //     const user_data = await Userdb.findOne({ where: { id: data.service_provider_id } })
-      
-    //     user_images.push(user_data.name);
-
-    //     var val = user_images;
-
-    //     obj[name] = val;
-    //     console.log(obj);
-
-    //   }   
-      
-    //   requested_bookings.push(obj);
-
-    //   //booking_data["user_names"] = user_images;
-      
-
-    // }
-
     res.send({status:true,booking_list:booking_data});
+
+  }else{
+
+    res.send({status:false,message:"User not found"});
+
+   }
+
+}
+
+
+exports.planned_bookings = async (req,res,next)=>{
+  const user = await Userdb.findByPk(req.payload.id)
+
+  if(user){
+
+    const booking_data = await Booking.findAll({
+      where: { user_id: user.id , status:1}
+    })
+
+    if(booking_data.length != 0){
+
+    for (i = 0; i < booking_data.length; i++) {
+
+        let obj = {}
+
+        const hire_provider = await HireProvider.findOne({where: { user_id: user.id , booking_id:booking_data[i].id}})
+
+        obj['id'] = booking_data[i].id;
+        obj['address'] = booking_data[i].address;
+        obj['date'] = booking_data[i].date;
+        obj['time'] = booking_data[i].time;
+        obj['hours'] = booking_data[i].hours;
+        obj['price'] = booking_data[i].total_pay;
+        
+        if(hire_provider){
+          obj['provider_id'] = hire_provider.service_provider_id;
+          const user_name = await Userdb.findOne({where: { id:hire_provider.service_provider_id}})
+          obj['provider_name'] = user_name.name;
+          obj['provider_image'] = user_name.image;
+        }
+
+        booking_data[i] = obj;
+    }
+  
+
+    }
+
+    res.send({status:true,planned_bookings:booking_data});
 
   }else{
 
@@ -222,7 +234,7 @@ exports.booking_details = async (req,res,next)=>{
       where: { id:req.body.booking_id, user_id: user.id , status:0},
       include: [ {
         model: RequestedBooking,
-        attributes: ['id','provider_name','provider_image','provider_comment']
+        attributes: ['service_provider_id','provider_name','provider_image','provider_comment']
       }
       ]
     })
@@ -236,6 +248,187 @@ exports.booking_details = async (req,res,next)=>{
    }
 
 }
+
+
+exports.planned_bookings_details = async (req,res,next)=>{
+  const user = await Userdb.findByPk(req.payload.id)
+
+  if(user){
+    
+    const booking_data = await Booking.findOne({where: { id:req.body.booking_id, user_id: user.id , status:1}})
+
+    if(booking_data){
+      let obj = {}
+
+        const hire_provider = await HireProvider.findOne({where: { user_id: user.id , booking_id:booking_data.id}})
+
+        obj['id'] = booking_data.id;
+        obj['address'] = booking_data.address;
+        obj['date'] = booking_data.date;
+        obj['time'] = booking_data.time;
+        obj['hours'] = booking_data.hours;
+        obj['price'] = booking_data.total_pay;
+        
+        if(hire_provider){
+          obj['provider_id'] = hire_provider.service_provider_id;
+          const user_name = await Userdb.findOne({where: { id:hire_provider.service_provider_id}})
+          obj['provider_name'] = user_name.name;
+          obj['provider_image'] = user_name.image;
+
+          const customer = await Userdb.findOne({where: { id:user.id}})
+
+          obj['customer_name'] = customer.name;
+        }
+
+
+        res.send({status:true,booking_list:obj});
+
+    }else{
+
+      res.send({status:false,message:"booking not found"});
+
+    }
+
+   
+  }else{
+
+    res.send({status:false,message:"User not found"});
+
+   }
+
+}
+
+
+
+
+
+exports.provider_detail = async (req,res,next)=>{
+  const user = await Userdb.findByPk(req.payload.id)
+
+  if(user){
+    
+    const provider_data = await Userdb.findOne({
+      where: { id:req.body.provider_id},
+      include: [ {
+        model: Review
+      }
+      ]
+    })
+
+    var reviews = [];
+
+    for (i = 0; i < provider_data.reviews.length; i++) {
+
+        let obj = {}
+
+        obj['user_id'] = provider_data.reviews[i].user_id;
+        const user_name = await Userdb.findOne({where: { id:provider_data.reviews[i].user_id}})
+        obj['user_name'] = user_name.name;
+        obj['rating_star'] = provider_data.reviews[i].rating_star;
+        obj['punctuality'] = provider_data.reviews[i].punctuality;
+        obj['speed'] = provider_data.reviews[i].speed;
+        obj['cleaning'] = provider_data.reviews[i].cleaning;
+        obj['comment'] = provider_data.reviews[i].comment;
+
+
+        reviews[i] = obj;
+    
+    }
+
+
+    const provider_datas = await Userdb.findOne({where: { id:req.body.provider_id}})
+
+    var obj = {id: provider_datas.id, name: provider_datas.name , image: provider_datas.image , country: provider_datas.country , gender: provider_datas.gender,gender: provider_datas.gender , dob: provider_datas.dob};
+    Object.assign(obj, {reviews: reviews});
+
+    res.send({status:true,provider_details:obj});
+
+  }else{
+
+    res.send({status:false,message:"User not found"});
+
+  }
+
+}
+
+
+
+exports.hire_providers = async (req,res,next)=>{
+  const user = await Userdb.findByPk(req.payload.id)
+
+  if(user){
+
+  const hire_providers = {
+      user_id: req.payload.id,
+      service_provider_id: req.body.provider_id,
+      booking_id: req.body.booking_id,
+      status: 1,
+  };
+
+  let hire_provider = await HireProvider.create(hire_providers)
+  if (hire_provider) {
+
+    let booking = await Booking.findOne({ where: { id: req.body.booking_id } })
+    if (booking) {
+
+      var booking_data = {
+        status:1
+      };
+
+      await Booking.update(booking_data,{ where: { id: booking.id } })
+
+      res.send({status:true,message:"Submitted"});
+
+    }else{
+
+      res.send({status:false,message:"booking not found"});
+    }
+
+  }else{
+    res.send({status:false,message:"Something went wrong"});
+  }
+
+  }else{
+
+    res.send({status:false,message:"User not found"});
+
+  }
+
+}
+
+exports.add_reviews = async (req,res,next)=>{
+  const user = await Userdb.findByPk(req.payload.id)
+
+  if(user){
+
+  const review_data = {
+      user_id: req.payload.id,
+      service_provider_id: req.body.provider_id,
+      service_id: req.body.service_id,
+      rating_star: req.body.rating_star,
+      punctuality: req.body.punctuality,
+      speed: req.body.speed,
+      cleaning: req.body.cleaning,
+      comment: req.body.comment,
+  };
+   await Review.create(review_data)
+  .then(review => {
+    res.send({status:true, message: "Submitted"});
+  })
+  .catch(err => {
+      res.send({ status:false, message: err.message});
+  });
+
+
+  }else{
+
+    res.send({status:false,message:"User not found"});
+
+   }
+
+}
+
+
 
 
 

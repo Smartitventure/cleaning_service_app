@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 const sequelize = require("../db/database");
 
-const Review = sequelize.define("reviews", {
+const HireProvider = sequelize.define("hire_providers", {
   id: {
     type: Sequelize.INTEGER,
     autoIncrement: true,
@@ -16,30 +16,14 @@ const Review = sequelize.define("reviews", {
     type: Sequelize.INTEGER,
     allowNull: false,
   },
-  service_id: {
+  booking_id: {
     type: Sequelize.INTEGER,
     allowNull: false,
   },
-  rating_star: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
-  },
-  punctuality: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
-  },
-  speed: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
-  },
-  cleaning: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
-  },
-  comment: {
+  status: {
     type: Sequelize.STRING,
-    allowNull: true,
+    default: 0,
   }
 });
 
-module.exports = Review;
+module.exports = HireProvider;

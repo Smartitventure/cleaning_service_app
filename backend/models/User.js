@@ -2,6 +2,7 @@ const Sequelize = require("sequelize");
 const sequelize = require("../db/database");
 const FavouriteLocation = require('../models/FavouriteLocation');
 const Booking = require('../models/Booking');
+const Review = require('../models/Review');
 
 const User = sequelize.define("user", {
   id: {
@@ -79,6 +80,9 @@ const User = sequelize.define("user", {
 
 User.hasMany(Booking, { foreignKey: 'user_id'});
 Booking.belongsTo(User,{ foreignKey: 'user_id'});
+
+User.hasMany(Review, { foreignKey: 'service_provider_id'});
+Review.belongsTo(User,{ foreignKey: 'service_provider_id'});
 
 User.hasMany(FavouriteLocation, { foreignKey: 'user_id'});
 FavouriteLocation.belongsTo(User,{ foreignKey: 'user_id'});

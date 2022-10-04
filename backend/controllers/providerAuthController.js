@@ -11,7 +11,7 @@ exports.create = async (req,res,next)=>{
         mobile_number: req.body.mobile_number,
         gender: req.body.gender,
         dob: req.body.dob,
-        role: "customer",
+        role: "provider",
         status: 0,
         join_date: req.body.join_date,
         language: req.body.language,
@@ -227,6 +227,9 @@ exports.login =  (req, res) => {
     }
    
 }
+
+
+
 
 
 

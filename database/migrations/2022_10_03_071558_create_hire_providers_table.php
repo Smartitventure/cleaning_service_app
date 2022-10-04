@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFavouriteCustomersTable extends Migration
+class CreateHireProvidersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,15 @@ class CreateFavouriteCustomersTable extends Migration
      */
     public function up()
     {
-        Schema::create('favourite_customers', function (Blueprint $table) {
+        Schema::create('hire_providers', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('customer_id');
-            $table->foreign('customer_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('service_provider_id');
             $table->foreign('service_provider_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('booking_id');
+            $table->foreign('booking_id')->references('id')->on('bookings')->onDelete('cascade');
+            $table->integer('status')->default(0);
             $table->dateTime('createdAt')->nullable();
             $table->dateTime('updatedAt')->nullable();
         });
@@ -31,6 +34,6 @@ class CreateFavouriteCustomersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('favourite_customers');
+        Schema::dropIfExists('hire_providers');
     }
 }

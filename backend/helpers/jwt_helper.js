@@ -29,9 +29,11 @@ module.exports = {
     JWT.verify(token, 'bezkoder-secret-key', (err, payload) => {
       if (err) {
         res.sendStatus(403);
-      }
+      }else{
         req.payload = payload
         next()
+      }
+       
     })
   }
 

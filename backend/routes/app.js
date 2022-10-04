@@ -31,4 +31,19 @@ router.get('/services',verifyAccessToken,controller.services);
 
 router.post('/request_services',verifyAccessToken,controller.request_services);
 
+router.get('/requested_bookings',verifyAccessToken,controller.requested_bookings);
+
+router.get('/planned_bookings',verifyAccessToken,controller.planned_bookings);
+
+router.post('/planned_bookings_details',verifyAccessToken,controller.planned_bookings_details);
+
+router.post('/booking_details',verifyAccessToken,controller.booking_details);
+
+router.post('/provider_detail',verifyAccessToken,controller.provider_detail);
+
+router.post('/hire_providers',verifyAccessToken ,controller.hire_providers);
+
+router.post('/add_reviews',verifyAccessToken,controller.add_reviews);
+
+
 module.exports = router;

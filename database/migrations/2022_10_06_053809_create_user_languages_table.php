@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFavouriteServiceProvidersTable extends Migration
+class CreateUserLanguagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateFavouriteServiceProvidersTable extends Migration
      */
     public function up()
     {
-        Schema::create('favourite_service_providers', function (Blueprint $table) {
+        Schema::create('user_languages', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->string('language');
             $table->dateTime('createdAt')->nullable();
             $table->dateTime('updatedAt')->nullable();
         });
@@ -29,6 +30,6 @@ class CreateFavouriteServiceProvidersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('favourite_service_providers');
+        Schema::dropIfExists('user_languages');
     }
 }

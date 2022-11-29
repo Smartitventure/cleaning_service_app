@@ -13,15 +13,15 @@
     <div class="bank-innersection">
         <div class="table-title-add">
             <div class="row">
-            <div class="col-sm-12">
-            <h2 style="text-align:center;">All Customers </h2>
-            </div>
+                <div class="col-sm-12">
+                    <h2 style="text-align:center;">All Customers </h2>
+                </div>
             </div>
         </div>
-        </div>
+    </div>
         <div class="customtableinnerbox">
         <div class="main-container-inner">
-        @if(count($all_customers) > 0)
+            @if(count($all_customers) > 0)
                 <div class="table-wrapper p-0">
                     <table class=" datatable table table-bordered table-striped table-hover " id="myTable">
                     <thead>

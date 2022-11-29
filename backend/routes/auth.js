@@ -1,8 +1,10 @@
+
 var express = require("express");
 var router = express.Router();
 const controller = require('../controllers/authcontroller');
 
 router.post('/register_user',controller.create);
+router.get('/get_language',controller.get_language);
 router.post('/login_user',controller.login);
 router.post('/confirm_otp',controller.confirm_otp);
 

@@ -2,7 +2,6 @@ const Sequelize = require("sequelize");
 const sequelize = require("../db/database");
 const RequestedBooking = require('../models/RequestedBooking');
 const HireProvider = require('../models/HireProvider');
-const User = require('../models/User');
 
 const Booking = sequelize.define("bookings", {
   id: {
@@ -52,6 +51,10 @@ const Booking = sequelize.define("bookings", {
     allowNull: true,
   },
   comment: {
+    type: Sequelize.STRING,
+    allowNull: true,
+  },
+  currency: {
     type: Sequelize.STRING,
     allowNull: true,
   },

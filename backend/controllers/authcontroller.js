@@ -1,8 +1,14 @@
 const Userdb = require('../models/User');
 const Otp = require('../models/Otp');
 const UserDeviceId = require('../models/UserDeviceId');
+const UserLanguage = require('../models/UserLanguage');
 const bcrypt = require('bcrypt');
 var jwt = require("jsonwebtoken");
+
+exports.get_language = async (req,res,next)=>{
+
+  
+}
 
 // register user
 exports.create = async (req,res,next)=>{
@@ -19,6 +25,13 @@ exports.create = async (req,res,next)=>{
     };
     await Userdb.create(userData)
     .then(user => {
+
+        const user_language = {
+            user_id: user.id,
+            language: req.body.language,
+        };
+
+        UserLanguage.create(user_language)
 
         if(req.body.device_id !== null){       
             UserDeviceId.findOne({
@@ -76,7 +89,7 @@ exports.create = async (req,res,next)=>{
                 const otpResponse = Otp.create(optData)
             }
     
-    
+      
             res.status(200).send({
                 status: true,
                 id: user.id,
@@ -93,7 +106,6 @@ exports.create = async (req,res,next)=>{
 }
 
 
-// login user
 
 exports.login =  (req, res) => {
 
@@ -113,6 +125,96 @@ exports.login =  (req, res) => {
                 device_id: req.body.device_id,
                 user_id: user.id
             }
+        }).then(device_token => {
+
+            if (device_token) {
+                UserDeviceId.update(
+                {
+                    firebase_token: req.body.firebase_token,    
+                },
+                { where: { user_id: user.id } }
+                )
+            }else{
+                const device_id = {
+                    user_id: user.id,
+                    device_id: req.body.device_id,
+                    firebase_token: req.body.firebase_token,
+                    device_type: req.body.device_type,
+                };
+                UserDeviceId.create(device_id)
+            }
+        })
+    }
+
+    Otp.findOne({
+        where: {
+            user_id: user.id
+        }
+    }).then(otp => {
+
+        const minutesToAdd = 2
+        const currentDate = new Date()
+        const futureDate = new Date(currentDate.getTime() + minutesToAdd * 60000)
+
+        if(otp){
+            Otp.update(
+                {
+                    code: "1111", 
+                    expire_at: futureDate   
+                },
+                { where: { user_id: user.id } }
+            )
+        }else{
+           // console.log("yesss")
+            const optData = {
+                user_id: user.id,
+                code: "1111", 
+                expire_at: futureDate
+            };
+            const otpResponse = Otp.create(optData)
+        }
+
+        if(req.body.name == user.name){
+            var is_checked = 0;
+        }else{
+            var is_checked = 1; 
+        }
+
+        res.status(200).send({
+            status: true,
+            id: user.id,
+            is_checked: is_checked,
+            otp: "Otp send to you regsitered mobile number"
+        });
+
+    });
+
+    })
+    .catch(err => {
+        res.status(500).send({ status: false, message: err.message })
+    });
+  };
+
+// login user
+
+exports.login =  (req, res) => {
+
+    Userdb.findOne({
+      where: {
+        mobile_number: req.body.mobile_number
+      }
+    })
+    .then(user => {
+    if (!user) {
+        res.status(500).send({ status: false, message: "Number is not registered" })
+    }
+
+    if(req.body.device_id !== null){       
+        UserDeviceId.findOne({
+        where: {
+            device_id: req.body.device_id,
+            user_id: user.id
+        }
         }).then(device_token => {
 
             if (device_token) {

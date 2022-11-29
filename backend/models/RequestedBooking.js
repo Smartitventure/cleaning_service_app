@@ -14,7 +14,7 @@ const RequestedBooking = sequelize.define("requested_bookings", {
   },
   service_provider_id: {
     type: Sequelize.INTEGER,
-    allowNull: false,
+    allowNull: false, 
   },
   provider_image: {
     type: Sequelize.STRING,

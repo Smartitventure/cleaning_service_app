@@ -19,6 +19,9 @@
 					</ul>
 				</li> -->
 				<li class="sidebar-dropdown  ">
+					<a href="{{route('all_languages')}}" class="{{ (request()->is('all_languages')) ? 'active' : '' }}"> <i class="fa fa-home home-custom " aria-hidden="true"></i><span>Languages</span> </a>
+				</li>
+				<li class="sidebar-dropdown  ">
 					<a href="{{route('add-services')}}" class="{{ (request()->is('add-services')) ? 'active' : '' }}"> <i class="fa fa-home home-custom " aria-hidden="true"></i><span>Services</span> </a>
 				</li>
 				<li class="sidebar-dropdown">

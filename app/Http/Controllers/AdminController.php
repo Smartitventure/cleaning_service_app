@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\File;
 
 class AdminController extends Controller
 {
@@ -60,6 +62,8 @@ class AdminController extends Controller
         return view('view_customer',compact('customer'));
     }
 
+   
+
     public function all_service_providers(){
         $all_service_providers = \App\User::where('role','service_provider')->get();
         return view('all_service_providers',compact('all_service_providers'));
@@ -79,6 +83,84 @@ class AdminController extends Controller
     public function view_service_provider($id){
         $service_provider = \App\User::find($id);
         return view('view_service_provider',compact('service_provider'));
+    }
+
+    public function all_languages(){
+        $languages = \App\Language::get();
+        $type = 1;
+        return view('language',compact('type','languages'));
+    }
+
+    public function store_languages(Request $request){
+        $language = new \App\Language;
+        $language->name = $request->name;
+        if ($request->has('image')) {
+            $image = $request->file('image');
+            $img_ext = $image->getClientOriginalName();
+            $filename = 'language-image-' . time() . '.' . $img_ext;
+            $filePath = '/images/smart-it/' . $filename;
+            Storage::disk('s3')->put($filePath, file_get_contents($image));
+            $url = config('services.base_url') . "/images/smart-it/" . $filename;
+            $language->image =  $url;
+        }
+        if ($language->save())
+        {
+            return redirect()->route('all_languages')->with(['alert' => 'success', 'message' => 'Language has been Added Successfully!.']);
+        }
+        else
+        {
+            return redirect()->route('all_languages')->with(['alert' => 'danger', 'message' => 'Language has not been Added!.']);
+        }
+    }
+
+    
+
+    public function edit_language($id)
+    {
+        $languages = \App\Language::orderBy('id','desc')->get();
+        $language =  \App\Language::find($id);
+        $type = 2;
+        return view('language',compact('languages','type','language'));
+    }
+
+    public function update_languages(Request $request, $id)
+    {
+    
+        $language =  \App\Language::find($id);
+        $language->name = $request->name;
+        if ($request->has('image')) {
+            $image = $request->file('image');
+            $img_ext = $image->getClientOriginalName();
+            $filename = 'language-image-' . time() . '.' . $img_ext;
+            $filePath = '/images/smart-it/' . $filename;
+            Storage::disk('s3')->put($filePath, file_get_contents($image));
+            $url = config('services.base_url') . "/images/smart-it/" . $filename;
+            $language->image =  $url;
+        }
+        if ($language->save())
+        {
+            return redirect()->route('all_languages')->with(['alert' => 'success', 'message' => 'Language has been Updated Successfully!.']);
+        }
+        else
+        {
+            return redirect()->route('all_languages')->with(['alert' => 'danger', 'message' => 'Language has not been Updated!.']);
+        }
+
+    }
+
+    public function delete_language($id)
+    {
+    
+        $language = \App\Language::find($id);
+       if($language->delete())
+       {
+            return redirect()->route('all_languages')->with(['alert' => 'success', 'message' => 'language has been Deleted Successfully!.']);
+       }
+       else
+       {
+            return redirect()->route('all_languages')->with(['alert' => 'danger', 'message' => 'language has not been Deleted!.']);
+       }
+
     }
 
     public function add_services(){
